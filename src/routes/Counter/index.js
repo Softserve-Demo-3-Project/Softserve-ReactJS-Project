@@ -14,6 +14,7 @@ export default (store) => ({
 
       /*  Add the reducer to the store on key 'counter'  */
       injectReducer(store, { key: 'counter', reducer })
+      injectReducer(store, { key: 'ads', reducer })
 
       /*  Return getComponent   */
       cb(null, Counter)
