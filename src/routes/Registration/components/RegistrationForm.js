@@ -1,4 +1,5 @@
 import React from 'react';
+import reactCustomValidation from '.../node-modules/reactCustomValidation';
 
 class RegistrationForm extends React.Component {
   constructor(props) {
