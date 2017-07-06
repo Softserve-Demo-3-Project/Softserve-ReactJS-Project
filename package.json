@@ -22,7 +22,7 @@
   "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha",
+    "bootstrap": "^3.3.7",
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "object-assign": "^4.1.1",
