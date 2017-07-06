@@ -33,18 +33,14 @@ class RegistrationForm extends React.Component {
 />);
   }
 
-// Input methods
-
 }
 
 {/* Warning messages */}
-{/*const isName = (name) => validator.isName(name) ? null : 'This is not a valid name.'*/}
-{/*const isAge = (age) => validator.isAge(age) ? null : 'This is not a valid age.'*/}
+const minLengthName = (name, length) => name.length >= length ? null : 'Name must contain at least 3 charachters'
+const minAge = (age, min) => age.min < 18 ? null : 'You have to be at least 18 yeasr old'
 const isEmail = (email) => validator.isEmail(email) ? null : 'This is not a valid email.'
-{/*const isUsername = (username) => validator.isUsername(username) ? null : 'This is not a valid username.'*/}
-{/*const isPassword = (password) => validator.isPassword(password) ? null : 'This is not a valid password.'*/}
-const minLength = (password, length) => password.length >= length ? null : 'Password is too short.'
-{/*const isRePassword = (rePassword) => validator.isRePassword(rePassword) ? null : 'This is not a valid password.'*/}
+const minLengthUsr = (username, length) => username.length >= length ? null : 'Username must contain at least 5 charachters'
+const minLength = (password, length) => password.length >= length ? null : 'Password must to be at least 6 charachters long'
 const areSame = (password, rePassword) => password === rePassword ? null : 'Passwords do not match.'
 
 function validationConfig(props) {
@@ -68,6 +64,9 @@ function validationConfig(props) {
     ],
 
     validations: {
+      name: [[minLengthName, name, 3]],
+      age: [[minAge, age, 18]],
+      username: [[minLengthUsr, username, 5]],
       email: [
         [isEmail, email]
       ],
@@ -99,29 +98,37 @@ class Form extends React.Component {
       <form>
 
         <h1>Registration</h1>
-
+        
         {/* Name */}
         <div className="form-group">
           <input
             value={fields.name}
+            {...$field('name', (e) => onChange('name', e.target.value))}
             onChange={onChange}
             type="text"
             name="name"
             id="name"
             placeholder="* Name"
             className="form-control"/>
+            {
+              $validation.name.show && <span>{$validation.name.error.reason}</span>
+            }            
         </div>
 
         {/* Age */}
         <div className="form-group">
           <input
             value={fields.age}
+            {...$field('age', (e) => onChange('age', e.target.value))}
             onChange={onChange}
             type="number"
             name="age"
             id="age"
             placeholder="* Age"
             className="form-control"/>
+            {
+              $validation.age.show && <span>{$validation.age.error.reason}</span>
+            }
         </div>
 
         {/* E-mail */}
@@ -141,12 +148,16 @@ class Form extends React.Component {
         <div className="form-group">
           <input
             value={fields.username}
+            {...$field('username', (e) => onChange('username', e.target.value))}
             onChange={onChange}
             type="text"
             name="username"
             id="username"
             placeholder="* Username"
             className="form-control"/>
+            {
+              $validation.username.show && <span>{$validation.username.error.reason}</span>
+            }
         </div>
 
         {/* Password */}
@@ -180,10 +191,11 @@ class Form extends React.Component {
         {/* Submit button */}
         <div className="form-group">
           <button
+            className="btn btn-primary btn-lg"
             onClick={(e) => {
             e.preventDefault()
             this.props.$submit(onValid, onInvalid)
-          }}>Create account</button>
+          }}>CREATE ACCOUNT</button>
         </div>
 
       </form>
