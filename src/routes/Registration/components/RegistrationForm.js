@@ -17,6 +17,10 @@ class RegistrationForm extends React.Component {
     };
   }
 
+  fieldChange = (field, value) => {
+    this.setState(update(this.state, {fields: {[field]: {$set: value}}}))
+  }
+
   onChange = (propName, value) => {
     this.setState({
       user: Object.assign({}, this.state.user, {[propName]: value})
@@ -28,19 +32,21 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    return (<Form fields={this.state.user} onChange={this.onChange} onValid={this.onSubmit} // eslint-disable-line no-alert
-  onInvalid={() => console.log('Error!')} // eslint-disable-line no-alert
-/>);
+    return (<Form 
+      fields={this.state.user} 
+      onChange={this.onChange} 
+      onValid={this.onSubmit} // eslint-disable-line no-alert
+      onInvalid={() => console.log('Error!')} // eslint-disable-line no-alert
+    />);
   }
-
 }
 
 {/* Warning messages */}
-const minLengthName = (name, length) => name.length >= length ? null : 'Name must contain at least 3 charachters'
+const minLengthName = (name, length) => name.length >= length ? null : 'Name must contain at least 3 letters'
 const minAge = (age, min) => age.min < 18 ? null : 'You have to be at least 18 yeasr old'
-const isEmail = (email) => validator.isEmail(email) ? null : 'This is not a valid email.'
+const isEmail = (email) => validator.isEmail(email) ? null : 'This is not a valid email'
 const minLengthUsr = (username, length) => username.length >= length ? null : 'Username must contain at least 5 charachters'
-const minLength = (password, length) => password.length >= length ? null : 'Password must to be at least 6 charachters long'
+const minLength = (password, length) => password.length >= length ? null : 'Password must be at least 6 charachters long'
 const areSame = (password, rePassword) => password === rePassword ? null : 'Passwords do not match.'
 
 function validationConfig(props) {
@@ -78,7 +84,7 @@ function validationConfig(props) {
           ['rePassword']
         ]
       }
-    }
+    },
   }
 
 }
