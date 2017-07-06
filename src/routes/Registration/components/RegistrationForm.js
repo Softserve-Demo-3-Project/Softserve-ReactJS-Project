@@ -32,16 +32,19 @@ class RegistrationForm extends React.Component {
   onInvalid={() => console.log('Error!')} // eslint-disable-line no-alert
 />);
   }
+
+// Input methods
+
 }
 
 {/* Warning messages */}
-const isName = (name) => validator.isName(name) ? null : 'This is not a valid name.'
-const isAge = (age) => validator.isAge(age) ? null : 'This is not a valid age.'
+{/*const isName = (name) => validator.isName(name) ? null : 'This is not a valid name.'*/}
+{/*const isAge = (age) => validator.isAge(age) ? null : 'This is not a valid age.'*/}
 const isEmail = (email) => validator.isEmail(email) ? null : 'This is not a valid email.'
-const isUsername = (username) => validator.isUsername(username) ? null : 'This is not a valid username.'
-const isPassword = (password) => validator.isPassword(password) ? null : 'This is not a valid password.'
+{/*const isUsername = (username) => validator.isUsername(username) ? null : 'This is not a valid username.'*/}
+{/*const isPassword = (password) => validator.isPassword(password) ? null : 'This is not a valid password.'*/}
 const minLength = (password, length) => password.length >= length ? null : 'Password is too short.'
-const isRePassword = (rePassword) => validator.isRePassword(rePassword) ? null : 'This is not a valid email.'
+{/*const isRePassword = (rePassword) => validator.isRePassword(rePassword) ? null : 'This is not a valid password.'*/}
 const areSame = (password, rePassword) => password === rePassword ? null : 'Passwords do not match.'
 
 function validationConfig(props) {
@@ -65,17 +68,8 @@ function validationConfig(props) {
     ],
 
     validations: {
-      name: [
-        [isName, name]
-      ],
-      age: [
-        [isAge, age]
-      ],
       email: [
         [isEmail, email]
-      ],
-      username: [
-        [isUsername, username]
       ],
       password: [[minLength, password, 6]],
       rePassword: {
@@ -87,7 +81,7 @@ function validationConfig(props) {
       }
     }
   }
-  
+
 }
 
 class Form extends React.Component {
@@ -110,28 +104,24 @@ class Form extends React.Component {
         <div className="form-group">
           <input
             value={fields.name}
-            {...$field('name', (e) => onChange('name', e.target.value))}
             onChange={onChange}
             type="text"
             name="name"
             id="name"
             placeholder="* Name"
             className="form-control"/>
-            {$validation.name.show && <span>{$validation.name.error.reason}</span>}
         </div>
 
         {/* Age */}
         <div className="form-group">
           <input
             value={fields.age}
-            {...$field('age', (e) => onChange('age', e.target.value))}
             onChange={onChange}
             type="number"
             name="age"
             id="age"
             placeholder="* Age"
             className="form-control"/>
-            {$validation.age.show && <span>{$validation.age.error.reason}</span>}
         </div>
 
         {/* E-mail */}
@@ -151,14 +141,12 @@ class Form extends React.Component {
         <div className="form-group">
           <input
             value={fields.username}
-            {...$field('username', (e) => onChange('username', e.target.value))}
             onChange={onChange}
             type="text"
             name="username"
             id="username"
             placeholder="* Username"
             className="form-control"/>
-            {$validation.username.show && <span>{$validation.username.error.reason}</span>}
         </div>
 
         {/* Password */}
