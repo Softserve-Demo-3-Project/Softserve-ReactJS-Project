@@ -1,6 +1,6 @@
 import React from 'react';
-import { validated } from 'react-custom-validation';
 import validator from 'validator';
+import {validated} from 'react-custom-validation';
 
 class RegistrationForm extends React.Component {
   constructor(props) {
@@ -12,14 +12,14 @@ class RegistrationForm extends React.Component {
         email: '',
         username: '',
         password: '',
-        repeatPassword: ''
+        rePassword: ''
       }
     };
   }
 
   onChange = (propName, value) => {
     this.setState({
-      user: Object.assign({}, this.state.user, { [propName]: value })
+      user: Object.assign({}, this.state.user, {[propName]: value})
     });
   }
 
@@ -28,121 +28,174 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    return (
-      <Form
-        fields={this.state.user}
-        onChange={this.onChange}
-        onValid={this.onSubmit} // eslint-disable-line no-alert
-        onInvalid={() => console.log('Error!')} // eslint-disable-line no-alert
-      />
-    );
+    return (<Form fields={this.state.user} onChange={this.onChange} onValid={this.onSubmit} // eslint-disable-line no-alert
+  onInvalid={() => console.log('Error!')} // eslint-disable-line no-alert
+/>);
   }
 }
 
-const isEmail = (email) =>
-  validator.isEmail(email) ? null : 'This is not a valid email.'
+{/* Warning messages */}
+const isName = (name) => validator.isName(name) ? null : 'This is not a valid name.'
+const isAge = (age) => validator.isAge(age) ? null : 'This is not a valid age.'
+const isEmail = (email) => validator.isEmail(email) ? null : 'This is not a valid email.'
+const isUsername = (username) => validator.isUsername(username) ? null : 'This is not a valid username.'
+const isPassword = (password) => validator.isPassword(password) ? null : 'This is not a valid password.'
+const minLength = (password, length) => password.length >= length ? null : 'Password is too short.'
+const isRePassword = (rePassword) => validator.isRePassword(rePassword) ? null : 'This is not a valid email.'
+const areSame = (password, rePassword) => password === rePassword ? null : 'Passwords do not match.'
 
 function validationConfig(props) {
-  const { email } = props.fields
+  const {
+    name,
+    age,
+    email,
+    username,
+    password,
+    rePassword
+  } = props.fields
 
   return {
-    fields: ['email'],
+    fields: [
+      'name',
+      'age',
+      'email',
+      'username',
+      'password',
+      'rePassword'
+    ],
 
     validations: {
+      name: [
+        [isName, name]
+      ],
+      age: [
+        [isAge, age]
+      ],
       email: [
         [isEmail, email]
-      ]
-    },
+      ],
+      username: [
+        [isUsername, username]
+      ],
+      password: [[minLength, password, 6]],
+      rePassword: {
+        rules: [[areSame, password, rePassword]],
+        fields: [
+          ['password', 'rePassword'],
+          ['rePassword']
+        ]
+      }
+    }
   }
+  
 }
 
 class Form extends React.Component {
   render() {
-    const { fields, onChange, onValid, onInvalid, $field, $validation } = this.props
+    const {
+      fields,
+      onChange,
+      onValid,
+      onInvalid,
+      $field,
+      $validation
+    } = this.props
 
     return (
       <form>
 
         <h1>Registration</h1>
 
+        {/* Name */}
         <div className="form-group">
-          <label className="control-label">Name</label>
           <input
             value={fields.name}
+            {...$field('name', (e) => onChange('name', e.target.value))}
             onChange={onChange}
             type="text"
             name="name"
             id="name"
-            placeholder=" * Name"
-            className="form-control" />
+            placeholder="* Name"
+            className="form-control"/>
+            {$validation.name.show && <span>{$validation.name.error.reason}</span>}
         </div>
 
+        {/* Age */}
         <div className="form-group">
-          <label className="control-label">Age</label>
           <input
             value={fields.age}
+            {...$field('age', (e) => onChange('age', e.target.value))}
             onChange={onChange}
             type="number"
             name="age"
             id="age"
-            placeholder=" * Age"
-            className="form-control" />
+            placeholder="* Age"
+            className="form-control"/>
+            {$validation.age.show && <span>{$validation.age.error.reason}</span>}
         </div>
 
+        {/* E-mail */}
         <div className="form-group">
-          <label className="control-label">E-mail</label>
           <input
             value={fields.email}
             {...$field('email', (e) => onChange('email', e.target.value))}
             type="email"
             name="email"
             id="email"
-            placeholder=" * E-mail"
-            className="form-control" />
+            placeholder="* E-mail"
+            className="form-control"/>
             {$validation.email.show && <span>{$validation.email.error.reason}</span>}
         </div>
 
+        {/* Username */}
         <div className="form-group">
-          <label className="control-label">Username</label>
           <input
             value={fields.username}
+            {...$field('username', (e) => onChange('username', e.target.value))}
             onChange={onChange}
             type="text"
             name="username"
             id="username"
-            placeholder=" * Username"
-            className="form-control" />
+            placeholder="* Username"
+            className="form-control"/>
+            {$validation.username.show && <span>{$validation.username.error.reason}</span>}
         </div>
 
+        {/* Password */}
         <div className="form-group">
-          <label className="control-label">Password</label>
           <input
             value={fields.password}
+            {...$field('password', (e) => onChange('password', e.target.value))}
             onChange={onChange}
             type="password"
             name="password"
             id="password"
-            placeholder=" * Password"
-            className="form-control" />
+            placeholder="* Password"
+            className="form-control"/>
+            {$validation.password.show && <span>{$validation.password.error.reason}</span>}
         </div>
 
+        {/* Password repeat */}
         <div className="form-group">
-          <label className="control-label">Repeat Password</label>
           <input
-            value={fields.repeatPassword}
+            value={fields.rePassword}
+            {...$field('rePassword', (e) => onChange('rePassword', e.target.value))}
             onChange={onChange}
             type="password"
-            name="repeatPassword"
-            id="repeatPassword"
-            placeholder=" * Repeat Password"
-            className="form-control" />
+            name="rePassword"
+            id="rePassword"
+            placeholder="* Repeat Password"
+            className="form-control"/>
+            {$validation.rePassword.show && <span>{$validation.rePassword.error.reason}</span>}
         </div>
 
+        {/* Submit button */}
         <div className="form-group">
-          <button onClick={(e) => {
+          <button
+            onClick={(e) => {
             e.preventDefault()
             this.props.$submit(onValid, onInvalid)
-          }}>Sign up</button>
+          }}>Create account</button>
         </div>
 
       </form>
