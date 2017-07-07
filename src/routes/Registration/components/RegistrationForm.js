@@ -43,6 +43,7 @@ class RegistrationForm extends React.Component {
 
 {/* Warning messages */}
 const minLengthName = (name, length) => name.length >= length ? null : 'Name must contain at least 3 letters'
+const onlyLetters =(name) => onlyLetters(name) ? Number : 'Only Letters are allowed'
 const minAge = (age, min) => age.min < 18 ? null : 'You have to be at least 18 yeasr old'
 const isEmail = (email) => validator.isEmail(email) ? null : 'This is not a valid email'
 const minLengthUsr = (username, length) => username.length >= length ? null : 'Username must contain at least 5 charachters'
@@ -70,7 +71,10 @@ function validationConfig(props) {
     ],
 
     validations: {
-      name: [[minLengthName, name, 3]],
+      name: [
+        [minLengthName, name, 3], 
+        [onlyLetters, name]
+      ],
       age: [[minAge, age, 18]],
       username: [[minLengthUsr, username, 5]],
       email: [
@@ -194,6 +198,12 @@ class Form extends React.Component {
             {$validation.rePassword.show && <span>{$validation.rePassword.error.reason}</span>}
         </div>
 
+        <div>
+            <p>
+                Fields with * are required!
+            </p>
+        </div> 
+
         {/* Submit button */}
         <div className="form-group">
           <button
@@ -203,6 +213,8 @@ class Form extends React.Component {
             this.props.$submit(onValid, onInvalid)
           }}>CREATE ACCOUNT</button>
         </div>
+
+
 
       </form>
     );
