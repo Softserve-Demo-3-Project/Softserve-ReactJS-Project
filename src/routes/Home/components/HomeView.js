@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
+
 import PanelCollapse from './PanelCollapse'
+
+const ListAds = ({ ads }) => (
+  <div>
+    {ads.map(ad => (
+      <PanelCollapse key={ad.id} ad={ad} />
+    ))}
+  </div>
+)
+
 
 class HomeView extends Component {
 
@@ -12,9 +22,7 @@ class HomeView extends Component {
   render() {
     return (
       <div className='container'>
-        {this.props.ads.map(ad => (
-          <PanelCollapse key={ad.id} ad={ad} />
-        ))}
+        <ListAds ads={this.props.ads} />
       </div>
     );
   }
