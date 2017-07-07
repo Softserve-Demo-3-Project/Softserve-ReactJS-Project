@@ -1,0 +1,12 @@
+form.regForm {
+  width: 700px;
+  padding: 15px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid rgb(192, 192, 192);
+  background-color: rgba(192, 192, 192, 0.1);
+}
+
+form.regForm ::-webkit-input-placeholder {
+  font-weight: bold;
+}
