@@ -7,6 +7,10 @@ form.regForm {
   background-color: rgba(192, 192, 192, 0.1);
 }
 
+form.regForm input[name="name"] {
+
+}
+
 form.regForm ::-webkit-input-placeholder {
   font-weight: bold;
 }

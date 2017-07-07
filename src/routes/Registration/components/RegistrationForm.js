@@ -1,7 +1,15 @@
 import React from 'react';
 import {validated} from 'react-custom-validation';
 import './regFormStyles.scss'
-import {minLengthName, noNum, minAge, isEmail, minLengthUsr, minLength, areSame} from '../../../utils/inputValidations.js'
+import {
+  minLengthName,
+  noNum,
+  minAge,
+  isEmail,
+  minLengthUsr,
+  minLength,
+  areSame
+} from '../../../utils/inputValidations.js'
 
 import Input from "../../../components/form/Input";
 class RegistrationForm extends React.Component {
@@ -38,7 +46,8 @@ class RegistrationForm extends React.Component {
   }
 }
 
-{/* --- Validations --- */}
+{/* --- Validations --- */
+}
 function validationConfig(props) {
   const {
     name,
@@ -123,15 +132,18 @@ class Form extends React.Component {
           type={"text"}
           name="name"
           placeholder="* Name"
-          {...properties}/>
+          {...properties}
+        />
 
         {/* --- Age --- */}
         <Input
           value={fields.age}
           type={"number"}
           name="age"
+          min="18"
           placeholder="* Age"
-          {...properties}/>
+          {...properties}
+        />
 
         {/* --- E-mail --- */}
         <Input
@@ -139,7 +151,8 @@ class Form extends React.Component {
           type={"email"}
           name="email"
           placeholder="* Email"
-          {...properties}/>
+          {...properties}
+        />
 
         {/* --- Username --- */}
         <Input
@@ -147,7 +160,8 @@ class Form extends React.Component {
           type={"username"}
           name="username"
           placeholder="* Username"
-          {...properties}/>
+          {...properties}
+        />
 
         {/* --- Password --- */}
         <Input
@@ -155,7 +169,8 @@ class Form extends React.Component {
           type={"password"}
           name="password"
           placeholder="* Password"
-          {...properties}/>
+          {...properties}
+        />
 
         {/* --- Password repeat --- */}
         <Input
@@ -163,7 +178,8 @@ class Form extends React.Component {
           type={"password"}
           name="rePassword"
           placeholder="* Repeat Password"
-          {...properties}/>
+          {...properties}
+        />
 
         <div>
           <p className="text-info">
