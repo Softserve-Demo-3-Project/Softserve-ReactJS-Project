@@ -6,7 +6,7 @@ export default class PanelCollapse extends Component {
         super(props);
         this.state = {
             open: false
-        }
+        };
     }
 
     render() {

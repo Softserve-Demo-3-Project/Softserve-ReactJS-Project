@@ -7,7 +7,7 @@ import PanelCollapse from './PanelCollapse'
 export const HomeView = () => (
   <div className='container'>
     <PanelCollapse />
-    <PanelCollapse/>
+    <PanelCollapse />
   </div>
 )
 

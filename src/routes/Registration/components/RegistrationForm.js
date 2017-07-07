@@ -2,6 +2,7 @@ import React from 'react';
 import validator from 'validator';
 import {validated} from 'react-custom-validation';
 
+import Input from "../../../components/form/Input";
 class RegistrationForm extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ class RegistrationForm extends React.Component {
     };
   }
 
- 
+
 
   onChange = (propName, value) => {
     this.setState({
@@ -31,11 +32,11 @@ class RegistrationForm extends React.Component {
 
   render() {
     return (
-      <Form 
-        fields={this.state.user} 
-        onChange={this.onChange} 
+      <Form
+        fields={this.state.user}
+        onChange={this.onChange}
         onValid={this.onSubmit} // eslint-disable-line no-alert
-        onInvalid={() => console.log('Error!')} // eslint-disable-line no-alert      
+        onInvalid={() => console.log('Error!')} // eslint-disable-line no-alert
       />
     );
   }
@@ -99,7 +100,6 @@ function validationConfig(props) {
       }
     }
   }
-
 }
 
 {/* Registration Form */}
@@ -112,7 +112,9 @@ class Form extends React.Component {
       onInvalid,
       $field,
       $validation
-    } = this.props
+    } = this.props;
+
+    const properties = {$field, $validation, onChange};
 
     return (
       <form>
@@ -130,6 +132,14 @@ class Form extends React.Component {
             placeholder="* Name"
             className="form-control"/> {$validation.name.show && <span>{$validation.name.error.reason}</span>}
         </div>
+        <Input
+          value={fields.name}
+          type={"text"}
+          name="name"
+          id="name"
+          placeholder="* Name"
+          {...properties}
+         />
 
         {/* Age */}
         <div className="form-group">
@@ -142,6 +152,13 @@ class Form extends React.Component {
             placeholder="* Age"
             className="form-control"/> {$validation.age.show && <span>{$validation.age.error.reason}</span>}
         </div>
+        <Input
+          value={fields.age}
+          type={"number"}
+          name="age"
+          placeholder="* Age"
+          {...properties}
+         />
 
         {/* E-mail */}
         <div className="form-group">
