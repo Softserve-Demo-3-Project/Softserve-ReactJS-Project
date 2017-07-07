@@ -44,6 +44,7 @@ class RegistrationForm extends React.Component {
 
 {/* Warning messages */}
 const minLengthName = (name, length) => name.length >= length ? null : 'Name must contain at least 3 letters'
+const noNum = (name) => /[0-9]+/.test(name) ? 'No numbers allowed' : null
 const minAge = (age, min) => age > 18 ? null : 'You have to be at least 18 yeasr old'
 const isEmail = (email) => validator.isEmail(email) ? null : 'This is not a valid email'
 const minLengthUsr = (username, length) => username.length >= length ? null : 'Username must contain at least 5 charachters'
@@ -73,6 +74,7 @@ function validationConfig(props) {
 
     validations: {
       name: [
+        [noNum, name],
         [minLengthName, name, 3]
       ],
       age: [

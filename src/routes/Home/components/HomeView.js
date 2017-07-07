@@ -3,12 +3,21 @@ import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
 import PanelCollapse from './PanelCollapse'
 
+class HomeView extends Component {
 
-export const HomeView = () => (
-  <div className='container'>
-    <PanelCollapse />
-    <PanelCollapse />
-  </div>
-)
+  componentDidMount() {
+    this.props.fetchAds();
+  }
+
+  render() {
+    return (
+      <div className='container'>
+        {this.props.ads.map(ad => (
+          <PanelCollapse key={ad.id} ad={ad} />
+        ))}
+      </div>
+    );
+  }
+}
 
 export default HomeView
