@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
 
 import HomeView from './../components/HomeView'
-import { fetchAds } from './../modules/home'
+import { fetchAds, patchAd } from './../modules/home'
 
 
 const mapDispatchToProps = {
-  fetchAds
+  fetchAds,
+  patchAd
 }
 
 const mapStateToProps = (state) => ({

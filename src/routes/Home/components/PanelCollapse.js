@@ -27,7 +27,7 @@ export default class PanelCollapse extends Component {
         <Collapse in={this.state.open}>
           <div>
             <div className='panel-body'>
-              {this.state.edit ? <EditField ad={this.props.ad} /> : <CollapseBody ad={this.props.ad} />}
+              {this.state.edit ? <EditField ad={this.props.ad} updateAd={this.props.updateAd} /> : <CollapseBody ad={this.props.ad} />}
             </div>
           </div>
         </Collapse>

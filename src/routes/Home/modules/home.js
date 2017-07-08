@@ -1,6 +1,7 @@
 import 'whatwg-fetch'
 
 export const RECEIVE_ADS = 'RECEIVE_ADS'
+export const PATCH_AD = 'PATCH_AD'
 
 export const fetchAds = () => {
   return (dispatch, getState) => {
@@ -15,13 +16,35 @@ export const fetchAds = () => {
   }
 }
 
+export const patchAd = (ad) => {
+  return (dispatch) => {
+    return fetch(`http://127.0.0.1:3001/ads/${ad.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(ad),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => res.json())
+    .then((ad) => {
+      dispatch({
+        type: PATCH_AD,
+        payload: ad
+      })
+    })
+    .catch((err) => console.error(err))
+  }
+}
+
 
 export const actions = {
   fetchAds
 }
 
 const ACTION_HANDLERS = {
-  [RECEIVE_ADS]: (state, action) => Object.assign([], state, action.payload)
+  [RECEIVE_ADS]: (state, action) => Object.assign([], state, action.payload),
+  [PATCH_AD]: (state, action) => Object.assign([], state, action.payload)
 }
 
 const initialState = []
