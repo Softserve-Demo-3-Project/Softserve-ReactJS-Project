@@ -24,16 +24,16 @@ class HomeView extends Component {
   }
 
   handleUpdateAd = (ad) => {
-    console.log("here")
     this.props.patchAd(ad)
+    .then((res) => {
+      this.props.fetchAds()
+    })
   }
-
 
   render() {
     return (
       <div className='container'>
         <ListAds ads={this.props.ads} updateAd={this.handleUpdateAd} />
-        {/*<button onClick={this.updateAd}>Update ad</button>*/}
       </div>
     );
   }
