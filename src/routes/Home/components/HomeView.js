@@ -4,10 +4,10 @@ import './HomeView.scss'
 
 import PanelCollapse from './PanelCollapse'
 
-const ListAds = ({ ads, updateAd }) => (
+const ListAds = ({ ads, updateAd, deleteAd }) => (
   <div>
     {ads.map(ad => (
-      <PanelCollapse key={ad.id} ad={ad} updateAd={updateAd} />
+      <PanelCollapse key={ad.id} ad={ad} updateAd={updateAd} deleteAd={deleteAd} />
     ))}
   </div>
 )
@@ -30,10 +30,19 @@ class HomeView extends Component {
     })
   }
 
+  handleDeleteAd = (id) => {
+    console.log("here")
+    this.props.deleteAd(id)
+    .then((res) => {
+      this.props.fetchAds()
+    })
+    //TODO: Fix warning when deleting an element
+  }
+
   render() {
     return (
       <div className='container'>
-        <ListAds ads={this.props.ads} updateAd={this.handleUpdateAd} />
+        <ListAds ads={this.props.ads} updateAd={this.handleUpdateAd} deleteAd={this.handleDeleteAd} />
       </div>
     );
   }

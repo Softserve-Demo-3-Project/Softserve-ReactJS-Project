@@ -21,7 +21,7 @@ export default class PanelCollapse extends Component {
           <h4 className='panel-title'>{this.props.ad.title}</h4>
           <SplitButton bsStyle={'primary'} id="split-btn" title={this.state.open ? 'Show less' : 'Show more'} onClick={() => this.setState({ open: !this.state.open })}>
             <MenuItem onClick={() => this.setState({ edit: !this.state.edit })}>Edit</MenuItem>
-            <MenuItem>Delete</MenuItem>
+            <MenuItem onClick={() => this.props.deleteAd(this.props.ad.id)}>Delete</MenuItem>
           </SplitButton>
         </div>
         <Collapse in={this.state.open}>

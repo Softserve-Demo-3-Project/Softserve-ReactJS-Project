@@ -2,9 +2,10 @@ import 'whatwg-fetch'
 
 export const RECEIVE_ADS = 'RECEIVE_ADS'
 export const PATCH_AD = 'PATCH_AD'
+export const DELETE_AD = 'DELETE_AD'
 
 export const fetchAds = () => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     return fetch('http://127.0.0.1:3001/ads')
       .then(res => res.json())
       .then(ads => {
@@ -26,25 +27,42 @@ export const patchAd = (ad) => {
         'Content-Type': 'application/json'
       }
     })
-    .then((res) => res.json())
-    .then((ad) => {
-      dispatch({
-        type: PATCH_AD,
-        payload: ad
+      .then((res) => res.json())
+      .then((ad) => {
+        dispatch({
+          type: PATCH_AD,
+          payload: ad
+        })
       })
+      .catch((err) => console.error(err))
+  }
+}
+
+export const deleteAd = (id) => {
+  return (dispatch) => {
+    return fetch(`http://127.0.0.1:3001/ads/${id}`, {
+      method: 'DELETE'
     })
-    .catch((err) => console.error(err))
+      .then((res) => {
+        dispatch({
+          type: DELETE_AD,
+          payload: id
+        })
+      })
   }
 }
 
 
 export const actions = {
-  fetchAds
+  fetchAds,
+  patchAd,
+  deleteAd
 }
 
 const ACTION_HANDLERS = {
   [RECEIVE_ADS]: (state, action) => Object.assign([], state, action.payload),
-  [PATCH_AD]: (state, action) => Object.assign([], state, action.payload)
+  [PATCH_AD]: (state, action) => Object.assign([], state, action.payload),
+  [DELETE_AD]: (state, action) => Object.assign([], state.filter(({ id }) => action.payload.id !== id))
 }
 
 const initialState = []
