@@ -40,8 +40,8 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    return (<Form fields={this.state.user} onChange={this.onChange} onValid={this.onSubmit} // eslint-disable-line no-alert
-  onInvalid={() => console.log('Error!')} // eslint-disable-line no-alert
+    return (<Form fields={this.state.user} onChange={this.onChange} onValid={this.onSubmit}
+  onInvalid={() => console.log('Error in filing Registration form!')}
 />);
   }
 }
@@ -183,7 +183,7 @@ class Form extends React.Component {
 
         <div>
           <p className="text-info">
-            Fields with * are required!
+            Fields with <span>*</span> are required!
           </p>
         </div>
 

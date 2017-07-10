@@ -1,3 +1,7 @@
+form.regForm h1 {
+  
+}
+
 form.regForm {
   width: 700px;
   padding: 15px;
@@ -7,10 +11,19 @@ form.regForm {
   background-color: rgba(192, 192, 192, 0.1);
 }
 
-form.regForm input[name="name"] {
-
-}
-
 form.regForm ::-webkit-input-placeholder {
   font-weight: bold;
+  fontFamily: 'Helvetica, Arial, sans-serif';
+}
+
+form.regForm button {
+  width: 100%;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form.regForm p.text-info span {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(255, 0, 0);
 }
