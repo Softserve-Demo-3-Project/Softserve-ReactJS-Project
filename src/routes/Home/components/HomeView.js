@@ -31,12 +31,10 @@ class HomeView extends Component {
   }
 
   handleDeleteAd = (id) => {
-    console.log("here")
     this.props.deleteAd(id)
     .then((res) => {
       this.props.fetchAds()
     })
-    //TODO: Fix warning when deleting an element
   }
 
   render() {

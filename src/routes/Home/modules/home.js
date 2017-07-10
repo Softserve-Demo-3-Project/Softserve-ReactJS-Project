@@ -62,7 +62,7 @@ export const actions = {
 const ACTION_HANDLERS = {
   [RECEIVE_ADS]: (state, action) => Object.assign([], state, action.payload),
   [PATCH_AD]: (state, action) => Object.assign([], state, action.payload),
-  [DELETE_AD]: (state, action) => Object.assign([], state.filter(({ id }) => action.payload.id !== id))
+  [DELETE_AD]: (state, action) => state.filter((ad) => action.payload !== ad.id)
 }
 
 const initialState = []
