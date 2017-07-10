@@ -11,7 +11,8 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
-  ads: state.ads
+  ads: state.ads.items,
+  isFetching: state.ads.isFetching
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeView)

@@ -3,6 +3,7 @@ import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
 
 import PanelCollapse from './PanelCollapse'
+import Loading from './../../../components/Loading/Loading'
 
 const ListAds = ({ ads, updateAd, deleteAd }) => (
   <div>
@@ -23,6 +24,12 @@ class HomeView extends Component {
     this.props.fetchAds();
   }
 
+  componentWillUpdate(prevState) {
+    if(this.props.ads !== prevState.ads){
+      console.log("Update")
+    }
+  }
+
   handleUpdateAd = (ad) => {
     this.props.patchAd(ad)
     .then((res) => {
@@ -40,7 +47,10 @@ class HomeView extends Component {
   render() {
     return (
       <div className='container'>
-        <ListAds ads={this.props.ads} updateAd={this.handleUpdateAd} deleteAd={this.handleDeleteAd} />
+        {this.props.isFetching ? 
+        <Loading/>: 
+        <ListAds ads={this.props.ads} updateAd={this.handleUpdateAd} deleteAd={this.handleDeleteAd} />}
+        
       </div>
     );
   }

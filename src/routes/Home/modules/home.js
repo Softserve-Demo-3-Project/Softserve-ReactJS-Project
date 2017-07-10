@@ -1,17 +1,23 @@
 import 'whatwg-fetch'
 
+export const REQUEST_ADS = 'REQUEST_ADS'
 export const RECEIVE_ADS = 'RECEIVE_ADS'
 export const PATCH_AD = 'PATCH_AD'
 export const DELETE_AD = 'DELETE_AD'
 
 export const fetchAds = () => {
   return (dispatch) => {
+    dispatch({
+      type: REQUEST_ADS,
+      isFetching: true
+    })
     return fetch('http://127.0.0.1:3001/ads')
       .then(res => res.json())
       .then(ads => {
         dispatch({
           type: RECEIVE_ADS,
-          payload: ads
+          payload: ads,
+          isFetching: false
         })
       })
   }
@@ -60,12 +66,16 @@ export const actions = {
 }
 
 const ACTION_HANDLERS = {
-  [RECEIVE_ADS]: (state, action) => Object.assign([], state, action.payload),
-  [PATCH_AD]: (state, action) => Object.assign([], state, action.payload),
-  [DELETE_AD]: (state, action) => state.filter((ad) => action.payload !== ad.id)
+  [REQUEST_ADS]: (state, action) => Object.assign({}, state, {isFetching: action.isFetching}),
+  [RECEIVE_ADS]: (state, action) => Object.assign({}, state, {items: action.payload, isFetching: action.isFetching}),
+  [PATCH_AD]: (state, action) => Object.assign({}, state, {items: action.payload}),
+  [DELETE_AD]: (state, action) => Object.assign({}, state, {items: state.items.filter((ad) => action.payload !== ad.id)})
 }
 
-const initialState = []
+const initialState = {
+  items: [],
+  isFetching: false
+}
 
 export default function homeReducer(state = initialState, action) {
   let handler = ACTION_HANDLERS[action.type]
