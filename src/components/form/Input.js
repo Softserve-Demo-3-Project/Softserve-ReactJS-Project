@@ -14,7 +14,7 @@ class Input extends React.Component {
       $field
     } = this.props;
 
-    {/* age input min & max*/}
+    {/* age input min & max */}
     let range = {};
     if (type === "number") {
       range = {

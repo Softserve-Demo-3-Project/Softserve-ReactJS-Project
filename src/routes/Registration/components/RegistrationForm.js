@@ -34,20 +34,20 @@ class RegistrationForm extends React.Component {
   }
 
   onSubmit = () => {
-    this
-      .props
-      .registerUser(Object.assign({}, this.state.user));
+    this.props.registerUser(Object.assign({}, this.state.user));
   }
 
   render() {
-    return (<Form fields={this.state.user} onChange={this.onChange} onValid={this.onSubmit}
-  onInvalid={() => console.log('Error in filing Registration form!')}
-/>);
+    return (
+      <Form
+        fields={this.state.user}
+        onChange={this.onChange}
+        onValid={this.onSubmit}
+      />);
   }
 }
 
-{/* --- Validations --- */
-}
+{/* --- Validations --- */}
 function validationConfig(props) {
   const {
     name,
@@ -102,8 +102,7 @@ function validationConfig(props) {
   }
 }
 
-{/* --- Registration Form --- */
-}
+{/* --- Registration Form --- */}
 class Form extends React.Component {
   render() {
     const {
@@ -132,9 +131,8 @@ class Form extends React.Component {
           type={"text"}
           name="name"
           placeholder="* Name"
-          {...properties}
-        />
-
+          {...properties}/> 
+        
         {/* --- Age --- */}
         <Input
           value={fields.age}
@@ -142,44 +140,39 @@ class Form extends React.Component {
           name="age"
           min="18"
           placeholder="* Age"
-          {...properties}
-        />
-
+          {...properties}/> 
+        
         {/* --- E-mail --- */}
         <Input
           value={fields.email}
           type={"email"}
           name="email"
           placeholder="* Email"
-          {...properties}
-        />
-
+          {...properties}/> 
+        
         {/* --- Username --- */}
         <Input
           value={fields.username}
           type={"username"}
           name="username"
           placeholder="* Username"
-          {...properties}
-        />
-
+          {...properties}/> 
+        
         {/* --- Password --- */}
         <Input
           value={fields.password}
           type={"password"}
           name="password"
           placeholder="* Password"
-          {...properties}
-        />
-
+          {...properties}/> 
+        
         {/* --- Password repeat --- */}
         <Input
           value={fields.rePassword}
           type={"password"}
           name="rePassword"
           placeholder="* Repeat Password"
-          {...properties}
-        />
+          {...properties}/>
 
         <div>
           <p className="text-info">
@@ -187,15 +180,13 @@ class Form extends React.Component {
           </p>
         </div>
 
-        {/* Submit button */}
-        <div className="form-group">
+        {/* Submit button */}        
           <button
             className="btn btn-primary btn-lg"
-            onClick={(e) => {
-            e.preventDefault();
-            this.props.$submit(onValid, onInvalid)
-          }}>CREATE ACCOUNT</button>
-        </div>
+            onClick={(e) => { e.preventDefault();
+            this.props.$submit(onValid)}}>
+            CREATE ACCOUNT
+          </button>  
 
       </form>
     );

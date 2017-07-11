@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import {registerUser} from '../modules/register';
 import RegistrationForm from '../components/RegistrationForm';
 
@@ -11,4 +11,3 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(RegistrationForm)
-
