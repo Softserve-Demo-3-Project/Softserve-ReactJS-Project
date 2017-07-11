@@ -32,25 +32,19 @@ class HomeView extends Component {
 
   handleUpdateAd = (ad) => {
     this.props.patchAd(ad)
-    .then((res) => {
-      this.props.fetchAds()
-    })
   }
 
   handleDeleteAd = (id) => {
     this.props.deleteAd(id)
-    .then((res) => {
-      this.props.fetchAds()
-    })
   }
 
   render() {
     return (
       <div className='container'>
-        {this.props.isFetching ? 
-        <Loading/>: 
+        {this.props.isFetching ?
+        <Loading/>:
         <ListAds ads={this.props.ads} updateAd={this.handleUpdateAd} deleteAd={this.handleDeleteAd} />}
-        
+
       </div>
     );
   }
