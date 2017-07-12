@@ -68,7 +68,7 @@ export const actions = {
 const ACTION_HANDLERS = {
   [REQUEST_ADS]: (state, action) => Object.assign({}, state, {isFetching: action.isFetching}),
   [RECEIVE_ADS]: (state, action) => Object.assign({}, state, {items: action.payload, isFetching: action.isFetching}),
-  [PATCH_AD]: (state, action) => Object.assign({}, state, {items: state.items.map((ad) => ad.id === action.payload.id ? {...ad, ad: action.payload} : ad)}),
+  [PATCH_AD]: (state, action) => Object.assign({}, state, {items: state.items.map((ad) => ad.id === action.payload.id ? {...ad, ...action.payload} : ad)}),
   [DELETE_AD]: (state, action) => Object.assign({}, state, {items: state.items.filter((ad) => action.payload !== ad.id)})
 }
 

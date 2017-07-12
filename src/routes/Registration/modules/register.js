@@ -1,6 +1,7 @@
 import 'whatwg-fetch';
 
 export const REGISTER_USER = 'REGISTER_USER';
+export const IS_USER_TAKEN = 'IS_USER_TAKEN';
 
 export const registerUser = (user) => {
   return (dispatch) => {

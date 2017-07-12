@@ -131,8 +131,8 @@ class Form extends React.Component {
           type={"text"}
           name="name"
           placeholder="* Name"
-          {...properties}/> 
-        
+          {...properties}/>
+
         {/* --- Age --- */}
         <Input
           value={fields.age}
@@ -140,32 +140,32 @@ class Form extends React.Component {
           name="age"
           min="18"
           placeholder="* Age"
-          {...properties}/> 
-        
+          {...properties}/>
+
         {/* --- E-mail --- */}
         <Input
           value={fields.email}
           type={"email"}
           name="email"
           placeholder="* Email"
-          {...properties}/> 
-        
+          {...properties}/>
+
         {/* --- Username --- */}
         <Input
           value={fields.username}
           type={"username"}
           name="username"
           placeholder="* Username"
-          {...properties}/> 
-        
+          {...properties}/>
+
         {/* --- Password --- */}
         <Input
           value={fields.password}
           type={"password"}
           name="password"
           placeholder="* Password"
-          {...properties}/> 
-        
+          {...properties}/>
+
         {/* --- Password repeat --- */}
         <Input
           value={fields.rePassword}
@@ -180,13 +180,13 @@ class Form extends React.Component {
           </p>
         </div>
 
-        {/* Submit button */}        
+        {/* Submit button */}
           <button
             className="btn btn-primary btn-lg"
             onClick={(e) => { e.preventDefault();
             this.props.$submit(onValid)}}>
             CREATE ACCOUNT
-          </button>  
+          </button>
 
       </form>
     );

@@ -218,6 +218,15 @@
       "password": "111111",
       "rePassword": "111111",
       "id": 35
+    },
+    {
+      "name": "Denis",
+      "age": "22",
+      "email": "mail@mail.mail",
+      "username": "XxXtraCookie",
+      "password": "111111",
+      "rePassword": "111111",
+      "id": 36
     }
   ],
   "ads": [
@@ -230,7 +239,7 @@
       "locationLng": 23.329357800000025,
       "address": "ulitsa „Georgi S. Rakovski“, Sofia, Bulgaria",
       "price": 50,
-      "description": "Best room!!!",
+      "description": "Best room!!!!!",
       "authorId": 3,
       "id": 8
     },
