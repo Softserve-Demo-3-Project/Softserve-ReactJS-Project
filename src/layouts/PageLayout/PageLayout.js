@@ -16,7 +16,7 @@ export const PageLayout = ({ children }) => (
         <Nav pullRight>
           <NavItem eventKey={1} href="/login">Login</NavItem>
           <NavItem eventKey={2} href="/registration">Register</NavItem>
-          <NavItem eventKey={3} onClick={console.log(22)} href="/">Logout</NavItem>
+          <NavItem eventKey={3} href="/">Logout</NavItem>
         </Nav>
     </Navbar>
 
