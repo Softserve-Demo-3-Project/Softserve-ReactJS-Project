@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <Provider store={this.props.store}>
         <div style={{ height: '100%' }}>
-          <Alert />
+          {/*<Alert />*/}
           <Router history={browserHistory} children={this.props.routes} />
         </div>
       </Provider>
