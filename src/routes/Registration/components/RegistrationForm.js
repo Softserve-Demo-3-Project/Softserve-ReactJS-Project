@@ -8,7 +8,8 @@ import {
   isEmail,
   minLengthUsr,
   minLength,
-  areSame
+  areSame,
+  isUserTaken
 } from '../../../utils/inputValidations.js'
 
 import Input from "../../../components/form/Input";
@@ -43,6 +44,7 @@ class RegistrationForm extends React.Component {
         fields={this.state.user}
         onChange={this.onChange}
         onValid={this.onSubmit}
+        onKeyPress={this.isUserTaken}
       />);
   }
 }
@@ -79,6 +81,7 @@ function validationConfig(props) {
         [minAge, age, 18]
       ],
       username: [
+        [isUserTaken],
         [minLengthUsr, username, 5]
       ],
       email: [
@@ -156,6 +159,7 @@ class Form extends React.Component {
           type={"username"}
           name="username"
           placeholder="* Username"
+          isUserTaken
           {...properties}/>
 
         {/* --- Password --- */}

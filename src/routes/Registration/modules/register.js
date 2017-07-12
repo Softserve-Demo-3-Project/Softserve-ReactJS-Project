@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 
 export const REGISTER_USER = 'REGISTER_USER';
-export const IS_USER_TAKEN = 'IS_USER_TAKEN';
+export const USER_EXISTENCE = 'USER_EXISTENCE';
 
 export const registerUser = (user) => {
   return (dispatch) => {
@@ -24,12 +24,31 @@ export const registerUser = (user) => {
   }
 }
 
+export const isUserTaken = (event) => {
+  return (dispatch) => {
+    return fetch('http://127.0.0.1:3001/users?username')
+      .then(res => res.json())
+      .then(user => {
+        dispatch({type: USER_EXISTENCE, username});
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  if(event.key == 'Enter'){
+    console.log('enter press here! ')
+  }
+}
+
+
 export const actions = {
-  registerUser
+  registerUser,
+  isUserTaken
 };
 
 const ACTION_HANDLERS = {
-  [REGISTER_USER]: (state, action) => Object.assign({}, state, action.payload)
+  [REGISTER_USER]: (state, action) => Object.assign({}, state, action.payload),
+  [USER_EXISTENCE]: (state, action) => Object.assign({}, state, action.username)
 }
 
 const initialState = {}
