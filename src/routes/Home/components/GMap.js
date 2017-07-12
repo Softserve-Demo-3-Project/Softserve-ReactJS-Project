@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 class GMap extends Component {
     constructor() {
@@ -35,7 +35,10 @@ class GMap extends Component {
                 defaultZoom={7}
                 defaultCenter={center}>
                 {markers.map((marker, index) => (
-                    <Marker position={marker} key={index} />
+                    <Marker
+                        key={index}
+                        position={marker}>
+                    </Marker>
                 ))}
             </GoogleMap>
 
@@ -54,3 +57,7 @@ class GMap extends Component {
     }
 }
 export default GMap
+
+               /*<InfoWindow>
+                            <div>ui</div>
+                        </InfoWindow>*/

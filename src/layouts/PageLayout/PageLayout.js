@@ -6,6 +6,35 @@ import './PageLayout.scss'
 
 export const PageLayout = ({ children }) => (
   <div>
+
+    <Navbar inverse>
+      <Navbar.Header>
+        <Navbar.Brand>
+          <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
+        </Navbar.Brand>
+      </Navbar.Header>
+        <Nav pullRight>
+          <NavItem eventKey={1} href="/login">Login</NavItem>
+          <NavItem eventKey={2} href="/registration">Register</NavItem>
+          <NavItem eventKey={3} onClick={console.log(22)} href="/">Logout</NavItem>
+        </Nav>
+    </Navbar>
+
+    <div className='page-layout__viewport'>
+      {children}
+    </div>
+
+  </div>
+)
+PageLayout.propTypes = {
+  children: PropTypes.node
+}
+
+export default PageLayout
+
+
+{/*<Link to='/login' activeClassName='page-layout__nav-item--active'>Login</Link>*/ }
+
     {/*<h1>Rentify</h1>
 
     <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
@@ -18,37 +47,3 @@ export const PageLayout = ({ children }) => (
 
     <Link to='/registration' activeClassName='page-layout__nav-item--active'>Registration</Link>*/}
 
-
-    <Navbar inverse collapseOnSelect>
-      <Navbar.Header>
-        <Navbar.Brand>
-          {/*<a href="#">React-Bootstrap</a>*/}
-          <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
-
-        </Navbar.Brand>
-        <Navbar.Toggle />
-      </Navbar.Header>
-      <Navbar.Collapse>
-        <Nav>
-          {/*<NavItem eventKey={1} href="#">Home</NavItem>*/}
-        </Nav>
-        <Nav pullRight>
-          <NavItem><Link to='/login' activeClassName='page-layout__nav-item--active'>Login</Link></NavItem>
-          <NavItem><Link to='/registration' activeClassName='page-layout__nav-item--active'>Register</Link></NavItem>
-          <NavItem><Link to='/logout' activeClassName='page-layout__nav-item--active'>Logout</Link></NavItem>
-
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-
-
-    <div className='page-layout__viewport'>
-      {children}
-    </div>
-  </div>
-)
-PageLayout.propTypes = {
-  children: PropTypes.node
-}
-
-export default PageLayout
