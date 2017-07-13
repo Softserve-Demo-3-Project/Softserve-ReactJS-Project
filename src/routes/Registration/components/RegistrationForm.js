@@ -8,8 +8,7 @@ import {
   isEmail,
   minLengthUsr,
   minLength,
-  areSame,
-  isUserTaken
+  areSame
 } from '../../../utils/inputValidations.js'
 
 import Input from "../../../components/form/Input";
@@ -81,7 +80,6 @@ function validationConfig(props) {
         [minAge, age, 18]
       ],
       username: [
-        [isUserTaken],
         [minLengthUsr, username, 5]
       ],
       email: [
@@ -159,7 +157,6 @@ class Form extends React.Component {
           type={"username"}
           name="username"
           placeholder="* Username"
-          isUserTaken
           {...properties}/>
 
         {/* --- Password --- */}
