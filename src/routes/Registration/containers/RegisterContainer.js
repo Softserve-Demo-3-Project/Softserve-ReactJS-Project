@@ -1,16 +1,13 @@
-import {connect} from 'react-redux'
-import {isUserTaken} from '../modules/register';
+import {connect} from 'react-redux';
 import {registerUser} from '../modules/register';
 import RegistrationForm from '../components/RegistrationForm';
 
 const mapActionsToProps = {
-  registerUser,
-  isUserTaken
+  registerUser
 };
 
 const mapStateToProps = (state) => ({
-  user: state.user,
-  username: state.username
+  user: state.user
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(RegistrationForm)
