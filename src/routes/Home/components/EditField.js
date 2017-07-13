@@ -18,6 +18,7 @@ class EditField extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    this.props.editToggle()    
     this.props.updateAd(this.state.ad)
   }
 

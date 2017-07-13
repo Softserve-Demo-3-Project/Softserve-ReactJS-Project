@@ -28,12 +28,6 @@ class HomeView extends Component {
     this.props.fetchAds();
   }
 
-  componentWillUpdate(prevState) {
-    if (this.props.ads !== prevState.ads) {
-      console.log("Update")
-    }
-  }
-
   handleUpdateAd = (ad) => {
     this.props.patchAd(ad)
   }
