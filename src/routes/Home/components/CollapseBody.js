@@ -37,7 +37,7 @@ const CollapseBody = ({ ad }) => {
       </div>
 
     </div>
-  );
+  )
 }
 
 export default CollapseBody;

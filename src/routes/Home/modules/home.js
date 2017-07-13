@@ -58,13 +58,6 @@ export const deleteAd = (id) => {
   }
 }
 
-
-export const actions = {
-  fetchAds,
-  patchAd,
-  deleteAd
-}
-
 const ACTION_HANDLERS = {
   [REQUEST_ADS]: (state, action) => Object.assign({}, state, {isFetching: action.isFetching}),
   [RECEIVE_ADS]: (state, action) => Object.assign({}, state, {items: action.payload, isFetching: action.isFetching}),

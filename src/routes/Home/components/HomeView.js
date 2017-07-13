@@ -8,9 +8,11 @@ import Loading from './../../../components/Loading/Loading'
 
 const ListAds = ({ ads, updateAd, deleteAd }) => (
   <div>
+    <div className='container'>
     {ads.map(ad => (
       <PanelCollapse key={ad.id} ad={ad} updateAd={updateAd} deleteAd={deleteAd} />
     ))}
+    </div>
     <div className='f-left' style={{ width: '100%', height: 300, background: '#9d9d9d' }}>
       <GMap className='my-map' ads={ads}/>
     </div>
@@ -25,7 +27,7 @@ class HomeView extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAds();
+    this.props.fetchAds()
   }
 
   handleUpdateAd = (ad) => {
@@ -37,6 +39,7 @@ class HomeView extends Component {
   }
 
   render() {
+    let test;
     return (
       <div>
         {this.props.isFetching ?

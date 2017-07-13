@@ -18,7 +18,7 @@ class EditField extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.editToggle()    
+    this.props.editToggle()
     this.props.updateAd(this.state.ad)
   }
 
@@ -67,7 +67,8 @@ class EditField extends Component {
             <input type="submit" className="form-control btn btn-primary" value="Save" />
           </div>
         </form>
-      </div>)
+      </div>
+    )
   }
 }
 
